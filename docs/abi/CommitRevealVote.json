@@ -1,0 +1,390 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "commitDuration",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "revealDuration",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "OPTION_COUNT",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "commit",
+    "inputs": [
+      {
+        "name": "commitment",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "commitEnd",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "commitmentOf",
+    "inputs": [
+      {
+        "name": "voter",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "commitment",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "computeCommitment",
+    "inputs": [
+      {
+        "name": "voter",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "option",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "salt",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "finalize",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hasRevealed",
+    "inputs": [
+      {
+        "name": "voter",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "revealed",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isCommitPhase",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isFinalizable",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isRevealPhase",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "outcome",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "enum CommitRevealVote.Outcome"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "reveal",
+    "inputs": [
+      {
+        "name": "option",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "salt",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revealEnd",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tallies",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[3]",
+        "internalType": "uint256[3]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tally",
+    "inputs": [
+      {
+        "name": "option",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalRevealed",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "winningOption",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "Committed",
+    "inputs": [
+      {
+        "name": "voter",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "commitment",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Finalized",
+    "inputs": [
+      {
+        "name": "outcome",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum CommitRevealVote.Outcome"
+      },
+      {
+        "name": "winningOption",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "totalRevealed",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Revealed",
+    "inputs": [
+      {
+        "name": "voter",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "option",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "AlreadyCommitted",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "AlreadyFinalized",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "AlreadyRevealed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CommitPhaseOver",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CommitmentMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmptyCommitment",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidOption",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidSchedule",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoCommitment",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotRevealPhase",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "RevealPhaseNotOver",
+    "inputs": []
+  }
+]
