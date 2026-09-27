@@ -1,0 +1,22 @@
+{
+  "kind": "evm_project",
+  "token": {
+    "contract": "CommitRevealVoteToken",
+    "name": "Commit Reveal Vote",
+    "symbol": "CRVOTE",
+    "decimals": 18
+  },
+  "contracts": [
+    {
+      "contract": "CommitRevealVote",
+      "constructorArgs": ["172800", "172800"]
+    }
+  ],
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "Sepolia (11155111) launch of the CommitRevealVote project. Application contract: CommitRevealVote (src/CommitRevealVote.sol, pragma solidity 0.8.24), a single-round commit-reveal vote among options 0, 1 and 2. Constructor is nonpayable and takes exactly two uint256 words, constructor(uint256 commitDuration, uint256 revealDuration); the manifest supplies the documented demo schedule 172800 and 172800 (2 days of commits from deployment, then 2 days of reveals), matching DEMO_COMMIT_DURATION and DEMO_REVEAL_DURATION in script/Deploy.s.sol and the README deployment record (ABI-encoded 0x...2a300...2a300). Durations are relative to block.timestamp at construction, so the same words are valid whenever the factory mines the launch. Both arguments are static words; there is no address-typed argument, so $token, $owner and $contract references are intentionally unused. Behaviour: one commitment per address before commitEnd; a commitment is keccak256(abi.encode(block.chainid, address(this), voter, uint8 option, bytes32 salt)); reveal only during [commitEnd, revealEnd) and only for msg.sender's own commitment (wrong salt, wrong option, wrong caller, unknown voter, option >= 3 and duplicate reveal all revert with typed errors); finalize is permissionless, allowed at or after revealEnd, runs exactly once, resolves ties to the lowest option number, and zero reveals produce the distinct Outcome.NoResult rather than option 0. The contract has no owner, no privileged role, no initializer, no payable or fallback function, no external calls, no tokens and no randomness; it never references or moves the launch token, and it makes no claim of Sybil resistance (one free address = one vote). Runtime is well under EIP-170 and contains no DELEGATECALL, CALLCODE or SELFDESTRUCT. Dependency order is trivial: one application contract, no backward references. BLOCKING GAP, stated plainly: the accepted tree contains NO launch token source. The brief said 'do not create a token' and 'no tokens', and the builders delivered only CommitRevealVote, its tests, ABI and deploy script (README: 'The task also forbids a launch token; none is included'). The evm_project manifest schema makes the token block mandatory, so the identifier CommitRevealVoteToken (name 'Commit Reveal Vote', symbol CRVOTE, 18 decimals) is a placeholder describing the fixed-supply ERC-20 that a later builder assignment must add under exactly that contract name: no constructor arguments, 18 decimals, exactly 1,000,000,000 tokens (10^27 minor units) minted once to msg.sender (the ProjectFactory), no mint, burn-by-admin, pause, owner, upgrade or delegatecall path. Until that source is accepted, attestation cannot produce IMD_TOKEN_CREATION_CODE, the protected Project floor cannot run, and this manifest must not be treated as deployable; this manifest assignment may change only launch.json and so could not add it. Pool: launch token paired against native ETH (zero address), fee 3000, tickSpacing 60, no hook; initialPrice 79228162514264337593543950336 is sqrtPriceX96 for 1:1 and the deployer derives the effective opening price from the pinned policy when it specifies initialMarketCapWei. Local verification on 2026-09-27 with forge build --offline, forge test --offline (50 passed, 0 failed, 0 skipped, solc 0.8.24, evm_version paris, optimizer 200 runs, bytecode_hash none) and EXPECTED_CHAIN_ID=0 forge script script/Deploy.s.sol:Deploy --offline (exactly one contract between broadcast markers); a scratch replica of the project floor deployed the contract via CREATE2 with these two constructor words and scanned the runtime for forbidden opcodes. The Sepolia address, transaction hash and explorer link are not in this file: the network deployer broadcasts after independent review and the README deployment record is filled then. Supply, allocations, owner, chainId, policy version and artifact hashes are not manifest fields; they come from policy and the release attestation."
+}
